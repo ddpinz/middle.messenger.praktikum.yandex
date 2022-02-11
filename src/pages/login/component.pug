@@ -1,0 +1,22 @@
+include ../../components/input/input.pug
+include ../../components/button/button.pug
+div.layout
+    form(action="")
+        div.login-form
+            div
+                h3 Вход
+                +inputForm({name: "login", title: "Имя", type: "text", error_message: "Неправильное имя"})
+                +inputForm({
+                    name: "password",
+                    title: "Пароль",
+                    type: "password",
+                    error_message: "Неправильный пароль"
+                })
+            div
+                +buttonForm({
+                    className: "btn-primary",
+                    text: "Авторизоваться",
+                    type: "button",
+                    onclick: "window.location.href='profile.html'"
+                })
+                span(class="link" onclick="window.location.href='registration.html'") Нет аккаунта?
