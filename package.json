@@ -29,6 +29,7 @@
     "node": ">=12"
   },
   "dependencies": {
+    "@parcel/config-default": "^2.3.1",
     "@parcel/transformer-inline-string": "^2.3.1",
     "fs": "^0.0.1-security"
   }
