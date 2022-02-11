@@ -1,6 +1,6 @@
 
 Ссылка на PULL REQUEST 1 sprint:
-![Ссылки]()
+[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/1)
 
 ## Описание
 
