@@ -1,0 +1,158 @@
+
+.main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+
+  &-ul {
+    width: 310px;
+
+    li {
+      padding: 15px 0;
+      font-size: 14px;
+
+      a {
+        color: #084C61;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &-title {
+    font-size: 60px;
+    font-weight: 800;
+    color: #084C61;
+
+    span {
+      color: #177E89;
+    }
+  }
+}
+
+.layout{
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .sidebar{
+    position: fixed;
+    width: 64px;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background: #FBFBFB;
+    z-index: 3;
+    border-right: 1px solid #EAEAEA;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .back-link{
+    display: block;
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+    text-decoration: none;
+    background-image: url("./images/back.svg");
+  }
+  .login-form{
+    min-height: 460px;
+    height: auto;
+    width: 340px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
+  }
+  .login-form > div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .login-form h3{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #1E1E1E;
+    margin: 30px 0 40px;
+  }
+  .link{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    color: #323031;
+    text-decoration: none;
+    cursor: pointer;
+    &-default{
+      color: #177E89;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    &-warning{
+      color: #DB3A34;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+  .link:hover{
+    text-decoration: underline;
+  }
+  .error-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    align-content: center;
+    &__image{
+      margin-bottom: 80px;
+      img{
+
+      }
+    }
+    &__title{
+      font-style: normal;
+      font-weight: 500;
+      font-size: 60px;
+      line-height: 60px;
+      text-align: center;
+      color: #1E1E1E;
+      margin-bottom: 30px;
+    }
+    &__message{
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 20px;
+      text-align: center;
+      color: #1E1E1E;
+    }
+    &__button{
+      margin-top: 60px;
+    }
+  }

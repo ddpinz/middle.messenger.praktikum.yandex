@@ -1,0 +1,16 @@
+include ../../components/button/button.pug
+div.layout
+    div.error-page
+        div
+            div.error-page__image
+                img(src="../../../static/images/5**.svg")
+            h3.error-page__title 500
+            p.error-page__message Мы уже фиксим
+
+        div.error-page__button
+            +buttonForm({
+                className: "btn-primary",
+                text: "Назад к чатам",
+                type: "button",
+                onclick: "window.location.href='chat.html'"
+            })

@@ -11,7 +11,7 @@
 ## Демо
 [Owl Chat](https://happy-easley-7285a8.netlify.app)
 
-## Дизайн
+## Дизайн 
 [Figma](https://www.figma.com/file/5wsoJ4ahFth2IKLsGlUHpW/OWL-Chat).
 
 ## Установка

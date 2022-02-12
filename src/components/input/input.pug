@@ -1,0 +1,5 @@
+mixin inputForm(data)
+    div(class="input-form")
+        label(for=data.name)=data.title
+        input(type=data.type name=data.name id=data.name)
+        div(class="input-form__error")=data.error_message

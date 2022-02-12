@@ -1,0 +1,38 @@
+.input-form{
+  border-bottom: 1px solid #323031;
+  width: 100%;
+  max-width: 280px;
+  margin: 16px 0;
+  position: relative;
+}
+.input-form__error{
+  display: block;
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  color: #DB3A34;
+}
+.input-form label{
+  display: block;font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  color: #999999;
+}
+.input-form input{
+  border: none;
+  width: 100%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  height: 24px;
+}
+.input-form input:focus{
+  outline: none !important;
+  border-color: #719ECE;
+}
