@@ -12,6 +12,8 @@ div.layout
         div.chat-list
             div.chat-list__head
                 div.chat-list__head__add-chat
+                div.chat-list__heade__logo
+                    img(src="./../../../static/images/logo.svg")
                 div.chat-list__head__profile(onclick="window.location.href='profile.html'") Профиль
             div.chat-list__content
                 +chatPerson({name: "Вася", message: "Привет"})
@@ -25,4 +27,14 @@ div.layout
 
 
         div.chat-content
+            div.chat-content__chat
+                div.chat-content__chat__wrapper
+                    div.chat-content__chat__message
+                        div.date
+                        div Message1
+                    div.chat-content__chat__message
+                        div.date
+                        div Message2
+            div.chat-content__form
+                form(id="chat-content__form")
             input(type="text" name="message")
