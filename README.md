@@ -1,17 +1,22 @@
 
-Ссылка на PULL REQUEST 1 sprint:
-[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/1)
+Ссылка на PULL REQUEST 2 sprint:
+[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/2)
 
 ## Описание
 
 Мессенджер OWL Chat
 В данный момент находится в разработке
 
+## Стэк
+- `TypeScript`
+- `Pug`
+- `Eslint`
+- `Stylelint`
 
 ## Демо
 [Owl Chat](https://happy-easley-7285a8.netlify.app)
 
-## Дизайн 
+## Дизайн
 [Figma](https://www.figma.com/file/5wsoJ4ahFth2IKLsGlUHpW/OWL-Chat).
 
 ## Установка
@@ -30,4 +35,4 @@
 - `/profile.html` — просмотр профиля пользователя
 - `/edit-profile.html` — редактирование профиля пользователя
 - `/change-password.html` — изменение пароля пользователя
-- `/chat.html` — пустая страница заглушка
+- `/chat.html` — страница чата
