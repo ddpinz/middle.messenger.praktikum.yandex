@@ -45,14 +45,8 @@
     "fs": "0.0.1-security"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@parcel/config-default": "^2.3.1",
-    "@parcel/transformer-inline-string": "^2.3.1",
-    "fs": "^0.0.1-security"
-=======
     "express": "4.17.2",
     "pug": "3.0.2",
     "uuid": "8.3.2"
->>>>>>> sprint_2
   }
 }
