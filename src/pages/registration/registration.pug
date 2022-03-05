@@ -1,0 +1,17 @@
+include ../../components/input/input.pug
+include ../../components/button/button.pug
+div.layout
+    form(action="")
+        div.login-form
+            div
+                h3 Регистрация
+                +inputForm({name: "email", title: "Почта", type: "email"})
+                +inputForm({name: "login", title: "Логин", type: "text"})
+                +inputForm({name: "first_name", title: "Имя", type: "text"})
+                +inputForm({name: "second_name", title: "Фамилия", type: "text"})
+                +inputForm({name: "phone", title: "Телефон", type: "phone"})
+                +inputForm({name: "password", title: "Пароль", type: "password", error_message: "Пароли не совпадают"})
+                +inputForm({name: "retype_password", title: "Пароль (ещё раз)", type: "password", error_message: "Пароли не совпадают"})
+            div
+                +buttonForm({className: "btn-primary", text: "Зарегистрироваться", type:"submit"})
+                a(class='link' href="../../../static/login.pug") Войти
