@@ -1,0 +1,14 @@
+include ./icons.pug
+
+mixin uploadTooltip()
+    div.chat-tooltip
+        ul.chat-tooltip__list
+            li.chat-tooltip__item
+                +Icon("icon-upload-photo")
+                span Фото или Видео
+            li.chat-tooltip__item
+                +Icon("icon-upload-file")
+                span Файл
+            li.chat-tooltip__item
+                +Icon("icon-share-location")
+                span Локация

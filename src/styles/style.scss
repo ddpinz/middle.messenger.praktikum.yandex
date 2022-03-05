@@ -63,7 +63,7 @@
     width: 28px;
     cursor: pointer;
     text-decoration: none;
-    background-image: url("./images/back.svg");
+    background-image: url("../images/back.svg");
   }
   .login-form{
     min-height: 460px;
@@ -131,8 +131,19 @@
     align-content: center;
     &__image{
       margin-bottom: 80px;
-      img{
-
+      display: flex;
+      justify-content: center;
+      &__404{
+        background: url('../images/404.svg') no-repeat 50% 50%;
+        background-size: contain;
+        height: 216px;
+        width: 226px;
+      }
+      &__500{
+        background: url('../images/5**.svg') no-repeat 50% 50%;
+        background-size: contain;
+        height: 216px;
+        width: 226px;
       }
     }
     &__title{

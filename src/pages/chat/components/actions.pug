@@ -1,0 +1,17 @@
+include ./icons.pug
+
+mixin actionsTooltip()
+    div.chat-tooltip
+        ul.chat-tooltip__list
+            li.chat-tooltip__item
+                +Icon("icon-add")
+                span Добавить пользователя
+            li.chat-tooltip__item
+                +Icon("icon-remove")
+                span Удалить пользователя
+            li.chat-tooltip__item
+                +Icon("icon-change-avatar")
+                span Изменить аватар
+            li.chat-tooltip__item.chat-tooltip__item-warning
+                +Icon("icon-trash")
+                span Удалить чат
