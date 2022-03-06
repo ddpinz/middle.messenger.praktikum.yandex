@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
-    "start": "parcel build static/index.pug && node ./server.js",
-    "build": "parcel build static/index.pug",
-    "dev": "parcel static/index.pug --open"
+    "start": "parcel build static/pages/*.pug && node ./server.js",
+    "build": "parcel build static/pages/*.pug",
+    "dev": "parcel static/pages/*.pug --port 3000 --no-cache",
+    "lint": "eslint ./src/**/*.{js,ts}"
   },
   "repository": {
     "type": "git",
@@ -18,19 +19,34 @@
   },
   "homepage": "https://github.com/ddpinz/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.2.1",
-    "@parcel/transformer-sass": "^2.2.1",
-    "express": "^4.17.2",
-    "parcel": "^2.2.1",
-    "pug": "^3.0.2",
-    "sass": "^1.49.7"
-  },
-  "engines": {
-    "node": ">=12"
+    "@parcel/transformer-pug": "2.3.1",
+    "@types/pug": "2.0.6",
+    "@typescript-eslint/eslint-plugin": "5.12.1",
+    "@typescript-eslint/parser": "5.12.1",
+    "assert": "2.0.0",
+    "buffer": "6.0.3",
+    "eslint": "8.9.0",
+    "eslint-config-airbnb": "19.0.4",
+    "os-browserify": "0.3.0",
+    "parcel": "2.2.1",
+    "parcel-transformer-pug-precompile": "1.0.6",
+    "path-browserify": "1.0.1",
+    "process": "0.11.10",
+    "sass": "1.49.7",
+    "stylelint": "14.5.3",
+    "ts-node": "10.5.0",
+    "typescript": "4.5.5",
+    "@parcel/core": "2.3.2",
+    "@parcel/transformer-sass": "2.3.1",
+    "@parcel/transformer-typescript-tsc": "2.3.1",
+    "@types/uuid": "8.3.4",
+    "@parcel/config-default": "2.3.1",
+    "@parcel/transformer-inline-string": "2.3.1",
+    "fs": "0.0.1-security"
   },
   "dependencies": {
-    "@parcel/config-default": "^2.3.1",
-    "@parcel/transformer-inline-string": "^2.3.1",
-    "fs": "^0.0.1-security"
+    "express": "4.17.2",
+    "pug": "3.0.2",
+    "uuid": "8.3.2"
   }
 }

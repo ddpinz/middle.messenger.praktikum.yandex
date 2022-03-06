@@ -1,9 +1,10 @@
+@import '../../styles/theme';
 .btn-primary{
   width: 280px;
   height: 37px;
-  background: #084C61;
+  background: $primary;
   border-radius: 8px;
-  color: #fff;
+  color: $text-color-light;
   outline: none;
   border: none;
   font-style: normal;
