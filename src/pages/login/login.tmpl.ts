@@ -8,5 +8,5 @@ div.layout
                 | !{password}
             div
                 | !{button}
-                a(class="link" href=link) #{link_text}
+                a(class="link" href=link) #{linkText}
 `;

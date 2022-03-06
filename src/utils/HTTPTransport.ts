@@ -1,17 +1,4 @@
-enum Methods {
-  Get = 'GET',
-  Post = 'POST',
-  Put = 'PUT',
-  Patch = 'PATCH',
-  Delete = 'DELETE',
-}
-
-type RequestOptions = {
-  method?: Methods;
-  headers?: Record<string, string>;
-  timeout?: number;
-  data?: any;
-};
+import { Methods, RequestOptions } from './utils.types';
 
 function queryStringify(data: Record<string, unknown>) {
     if (typeof data !== 'object') {

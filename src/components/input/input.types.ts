@@ -2,6 +2,7 @@ type InputProps = {
   events?: {
     click?: () => void,
     focusout?: (e: Event) => void
+    change?: (e: Event) => void
   };
   title?: string;
   type?: string;
@@ -11,9 +12,10 @@ type InputProps = {
   minlength?: string;
   maxlength?: string;
   pattern?: string;
-  error_message?: string;
-  error_pattern?: string;
+  errorMessage?: string;
+  errorPattern?: string;
   value?: string;
+  inputValue?: string;
 }
 
 export {

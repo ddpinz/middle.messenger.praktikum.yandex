@@ -1,4 +1,3 @@
-import { compile } from 'pug';
 import Block from '../../utils/Block';
 import loginTemplate from './login.tmpl';
 import Input from '../../components/input/input';
@@ -10,7 +9,7 @@ export default class Login extends Block<LoginProps> {
         super(
             'div',
             {
-                link_text: 'Нет аккаунта?',
+                linkText: 'Нет аккаунта?',
                 link: './registration.html',
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
@@ -20,14 +19,14 @@ export default class Login extends Block<LoginProps> {
                     type: 'text',
                     name: 'login',
                     required: 'true',
-                    error_pattern: 'Введите логин'
+                    errorPattern: 'Введите логин'
                 }),
                 password: new Input({
                     title: 'Пароль',
                     type: 'password',
                     name: 'password',
                     required: 'true',
-                    error_pattern: 'Введите пароль'
+                    errorPattern: 'Введите пароль'
                 }),
                 button: new Button({
                     text: 'Авторизоваться',
@@ -54,6 +53,6 @@ export default class Login extends Block<LoginProps> {
     }
 
     public render() {
-        return this.compile(compile(loginTemplate), { ...this.props });
+        return this.compile(loginTemplate, { ...this.props });
     }
 }

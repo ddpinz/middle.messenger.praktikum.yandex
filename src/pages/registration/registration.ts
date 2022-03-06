@@ -1,16 +1,16 @@
-import { compile } from 'pug';
 import Block from '../../utils/Block';
 import registrationTemplate from './registration.tmpl';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 import { RegistrationProps } from './registration.types';
+import { regExpConstants, validationMessages } from '../../utils/constants';
 
 export default class Registration extends Block<RegistrationProps> {
     public constructor() {
         super(
             'div',
             {
-                link_text: 'Войти',
+                linkText: 'Регистрация',
                 link: './login.html',
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
@@ -20,8 +20,8 @@ export default class Registration extends Block<RegistrationProps> {
                     type: 'email',
                     name: 'email',
                     required: 'true',
-                    error_pattern: 'адрес вида pochta@pochta.com',
-                    pattern: '\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}'
+                    errorPattern: validationMessages.email,
+                    pattern: regExpConstants.email
                 }),
                 login: new Input({
                     title: 'Логин',
@@ -30,8 +30,8 @@ export default class Registration extends Block<RegistrationProps> {
                     required: 'true',
                     minlength: '3',
                     maxlength: '20',
-                    error_pattern: 'от 3 до 20 символов',
-                    pattern: '[a-zA-Z0-9-_]*[a-zA-Z]{1}[a-zA-Z0-9-_]*'
+                    errorPattern: validationMessages.login,
+                    pattern: regExpConstants.login
                 }),
                 name: new Input({
                     title: 'Имя',
@@ -39,26 +39,26 @@ export default class Registration extends Block<RegistrationProps> {
                     name: 'first_name',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'не менее 3х символов',
-                    pattern: '^[A-ZА-ЯЁ]{1}[a-zа-яё-]+$'
+                    errorPattern: validationMessages.name,
+                    pattern: regExpConstants.name
                 }),
-                last_name: new Input({
+                lastName: new Input({
                     title: 'Фамилия',
                     type: 'text',
                     name: 'second_name',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'не менее 3х символов',
-                    pattern: '^[A-ZА-ЯЁ]{1}[a-zа-яё-]+$'
+                    errorPattern: validationMessages.name,
+                    pattern: regExpConstants.name
                 }),
                 phone: new Input({
                     title: 'Телефон',
-                    type: 'tel',
+                    type: 'phone',
                     name: 'phone',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'номер телефона +79809999999',
-                    pattern: '^\\+?[0-9]{10,15}$'
+                    errorPattern: validationMessages.phone,
+                    pattern: regExpConstants.phone
                 }),
                 password: new Input({
                     title: 'Пароль',
@@ -67,14 +67,15 @@ export default class Registration extends Block<RegistrationProps> {
                     required: 'true',
                     minlength: '8',
                     maxlength: '40',
-                    error_pattern: 'не менее 8 символов',
-                    pattern: '((?=.*\\d)(?=.*[0-9])(?=.*[A-Z]).{8,40})'
+                    errorPattern: validationMessages.password,
+                    pattern: regExpConstants.password
                 }),
-                retype_password: new Input({
+                retypePassword: new Input({
                     title: 'Пароль (ещё раз)',
                     type: 'password',
                     name: 'retype_password',
-                    error_pattern: 'пароли не совпадают',
+                    pattern: regExpConstants.password,
+                    errorPattern: validationMessages.passwordNotMatch,
                     required: 'true'
                 }),
                 button: new Button({
@@ -86,15 +87,23 @@ export default class Registration extends Block<RegistrationProps> {
         );
     }
 
+    comparePassword() {
+        const children = this.getChildren();
+        const password = Object.values(children).find(input => input.props?.name === 'password');
+        const retypePassword = Object.values(children).find(input => input.props?.name === 'retype_password');
+        (retypePassword as Input)?.compare(retypePassword?.props.inputValue as string, password?.props.inputValue as string);
+    }
+
     public handleSubmit(e: Event) {
         e.preventDefault();
         const formData = new FormData((e.target as HTMLFormElement));
+        this.comparePassword();
         if (formData.get('retype_password') === formData.get('password')) {
             const data = {
                 email: formData.get('email'),
                 login: formData.get('login'),
-                first_name: formData.get('first_name'),
-                second_name: formData.get('second_name'),
+                firstName: formData.get('first_name'),
+                secondName: formData.get('second_name'),
                 phone: formData.get('phone'),
                 password: formData.get('password')
             };
@@ -103,6 +112,6 @@ export default class Registration extends Block<RegistrationProps> {
     }
 
     public render() {
-        return this.compile(compile(registrationTemplate), { ...this.props });
+        return this.compile(registrationTemplate, { ...this.props });
     }
 }

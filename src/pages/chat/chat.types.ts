@@ -1,5 +1,5 @@
 type ChatProps = {}
 
 export {
-  ChatProps
+    ChatProps
 };

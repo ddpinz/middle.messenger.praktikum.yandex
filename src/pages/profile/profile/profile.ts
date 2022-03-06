@@ -1,4 +1,3 @@
-import { compile } from 'pug';
 import Block from '../../../utils/Block';
 import profileTemplate from './profile.tmpl';
 import ProfileLine from '../components/profile-line/profile-line';
@@ -17,15 +16,15 @@ export default class Edit extends Block<ProfileProps> {
                     title: 'Логин',
                     value: 'ivanivanov'
                 }),
-                first_name: new ProfileLine({
+                firstName: new ProfileLine({
                     title: 'Имя',
                     value: 'Иван'
                 }),
-                second_name: new ProfileLine({
+                secondName: new ProfileLine({
                     title: 'Фамилия',
                     value: 'Иванов'
                 }),
-                display_name: new ProfileLine({
+                displayName: new ProfileLine({
                     title: 'Имя в чате',
                     value: 'Иван'
                 }),
@@ -38,6 +37,6 @@ export default class Edit extends Block<ProfileProps> {
     }
 
     public render() {
-        return this.compile(compile(profileTemplate), { ...this.props });
+        return this.compile(profileTemplate, { ...this.props });
     }
 }

@@ -6,10 +6,10 @@ div(class="input-form")
                 name=name
                 placeholder=placeholder
                 required=required
-                value=input_value
+                value=inputValue
                 minlength=minlength
                 maxlength=maxlength
                 pattern=pattern
         )
-        div(class="input-form__error") #{error_message}
+        div(class="input-form__error") #{errorMessage}
 `;

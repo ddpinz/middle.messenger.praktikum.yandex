@@ -7,9 +7,9 @@ type EditProps = {
   };
   email?: Input;
   login?: Input;
-  first_name?: Input;
-  second_name?: Input;
-  display_name?: Input;
+  firstName?: Input;
+  secondName?: Input;
+  displayName?: Input;
   phone?: Input;
   button?: Button;
 }
