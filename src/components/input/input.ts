@@ -1,4 +1,3 @@
-import { compile } from 'pug';
 import Block from '../../utils/Block';
 import inputTmpl from './input.tmpl';
 import { InputProps } from './input.types';
@@ -10,21 +9,28 @@ export default class Input extends Block<InputProps> {
             {
                 ...props,
                 events: {
-                    focusout: (e: Event) => this.handleBlur(e)
+                    focusout: (e: Event) => this.handleFocusOut(e)
                 }
             },
         );
     }
 
-    public handleBlur(e: Event) {
-        console.log((e.target as HTMLInputElement).validationMessage);
+    public compare(value: string, referenceValue?: string) {
+        if (value !== referenceValue) {
+            this.setProps({
+                errorMessage: this.props.errorPattern
+            });
+        }
+    }
+
+    public handleFocusOut(e: Event) {
         this.setProps({
-            error_message: (e.target as HTMLInputElement).validationMessage ? this.props.error_pattern : '',
-            input_value: (e.target as HTMLInputElement).value
+            errorMessage: (e.target as HTMLInputElement).validationMessage ? this.props.errorPattern : '',
+            inputValue: (e.target as HTMLInputElement).value
         });
     }
 
     public render() {
-        return this.compile(compile(inputTmpl), { ...this.props });
+        return this.compile(inputTmpl, { ...this.props });
     }
 }

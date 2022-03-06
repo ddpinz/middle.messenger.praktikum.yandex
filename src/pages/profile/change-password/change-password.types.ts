@@ -7,7 +7,7 @@ type ChangePasswordProps = {
   };
   oldPassword?: Input;
   newPassword?: Input;
-  retype_newPassword?: Input;
+  retypeNewPassword?: Input;
   button?: Button;
 }
 

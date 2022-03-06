@@ -2,7 +2,7 @@ import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 
 type RegistrationProps = {
-  link_text?: string;
+  linkText?: string;
   link?: string;
   events?: {
     submit?: (e: Event) => void,
@@ -10,13 +10,13 @@ type RegistrationProps = {
   email?: Input;
   login?: Input;
   name?: Input;
-  last_name?: Input;
+  lastName?: Input;
   phone?: Input;
   password?: Input;
-  retype_password?: Input;
+  retypePassword?: Input;
   button?: Button;
 }
 
 export {
-  RegistrationProps
+    RegistrationProps
 };

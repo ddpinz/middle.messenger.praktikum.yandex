@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import pug from 'pug';
 import EventBus from './EventBus';
+import { MetaProps } from './utils.types';
 
 export default abstract class Block<Props extends Record<string, unknown>> {
     private static EVENTS = {
@@ -11,11 +13,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
 
     private _element: HTMLElement;
 
-    private readonly _meta: {
-    tagName: string,
-    props: Record<string, unknown>,
-    tagClass?: string,
-  };
+    private readonly _meta: MetaProps;
 
     private eventBus: () => EventBus;
 
@@ -151,7 +149,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
         return { children, props };
     }
 
-    private _makePropsProxy(props: Record<string, unknown>) {
+    private _makePropsProxy = (props: Record<string, unknown>) => {
         const self = this;
 
         return new Proxy(props, {
@@ -168,7 +166,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
                 throw new Error('Нет доступа');
             }
         });
-    }
+    };
 
     private _createDocumentElement(tagName: string) {
         const element = document.createElement(tagName);
@@ -207,7 +205,11 @@ export default abstract class Block<Props extends Record<string, unknown>> {
         });
     }
 
-    public compile(template: (context: Record<string, unknown>) => string, context: Record<string, unknown>) {
+    getChildren() {
+        return this.children;
+    }
+
+    public compile(template: string, context: Record<string, unknown>) {
         const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
         Object.entries(this.children).forEach(([key, child]: [string, Block<Props>]) => {
@@ -224,7 +226,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
             }
         });
 
-        fragment.innerHTML = template(context);
+        fragment.innerHTML = pug.render(template, { doctype: 'html', ...context });
 
         Object.entries(this.children).forEach(([key, child]: [string, Block<Props>]) => {
             if (Array.isArray(child)) {

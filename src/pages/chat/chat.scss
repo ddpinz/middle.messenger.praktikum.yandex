@@ -1,3 +1,5 @@
+@import '../../styles/theme';
+
 @mixin icon {
   height: 22px;
   width: 22px;
@@ -43,36 +45,36 @@
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  &-tooltip{
+  &-tooltip {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 100;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    background: $background-color-primary;
+    box-shadow: 0px 0px 6px $black-transparent-14;
     border-radius: 12px;
     padding: 7px 15px;
-    &__list{
-    }
-    &__item{
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      margin: 8px 0;
-      &-warning{
-        color: #DB3A34;
-      }
-      span:first-of-type{
-        margin-right: 10px;
-      }
-    }
+  }
+  &-tooltip__list{
+  }
+  &-tooltip__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 8px 0;
+  }
+  &-tooltip__item-warning{
+    color: $warning;
+  }
+  &-tooltip__item span:first-of-type{
+    margin-right: 10px;
   }
   &-list{
     width: 310px;
     height: 100vh;
-    background-color: #FBFBFB;
-    border-right: 1px solid #EAEAEA;
-    &__head{
+    background-color: $background-color;
+    border-right: 1px solid $border-color;
+    &__head {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -81,84 +83,84 @@
       height: 54px;
       font-size: 14px;
       line-height: 14px;
-      color: #999999;
+      color: $text-color-secondary;
       align-content: center;
       align-items: center;
       padding: 0 10px;
-      &__logo{
-        background: url('../images/logo.svg') no-repeat;
-        background-size: cover;
-        width: 30px;
-        height: 30px;
-      }
-      &__add-chat{
-        background: url('../images/create.svg') no-repeat 0 50%;
-        padding-left: 30px;
-        align-items: center;
-        display: flex;
-        height: 30px;
-        cursor: pointer;
-      }
-      &__profile{
-        background: url('../images/arr-right.svg') no-repeat 100% 50%;
-        cursor: pointer;
-        padding-right: 20px;
-      }
     }
-    &__search{
+    &__head__logo{
+      background: url('../images/logo.svg') no-repeat;
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+    }
+    &__head__add-chat{
+      background: url('../images/create.svg') no-repeat 0 50%;
+      padding-left: 30px;
+      align-items: center;
+      display: flex;
+      height: 30px;
+      cursor: pointer;
+    }
+    &__head__profile{
+      background: url('../images/arr-right.svg') no-repeat 100% 50%;
+      cursor: pointer;
+      padding-right: 20px;
+    }
+    &__search {
       padding: 0 10px 10px;
-      border-bottom: 1px solid #EAEAEA;
-      &__input{
-        width: calc(100% - 20px);
-        padding: 0 10px;
-        height: 32px;
-        background: #EFEFEF;
-        border-radius: 5px;
-        border: none;
-        color: #999999;
-        &:focus{
-          outline: none;
-        };
-      }
+      border-bottom: 1px solid $border-color;
     }
-    &__content{
+    &__search__input{
+      width: calc(100% - 20px);
+      padding: 0 10px;
+      height: 32px;
+      background: $input-color;
+      border-radius: 5px;
+      border: none;
+      color: $text-color-secondary;
+      &:focus{
+        outline: $black-transparent-14;
+      };
+    }
+    &__content {
       padding: 0 10px 10px;
       height: calc(100vh - 90px);
       overflow-y: scroll;
-      &__item{
+    }
+      &__content__item {
         display: flex;
         flex-direction: row;
         height: 70px;
         flex-wrap: nowrap;
         overflow: hidden;
-        border-bottom: 1px solid #EAEAEA;
+        border-bottom: 1px solid $border-color;
         align-items: center;
-        &__avatar{
-          display: block;
-          width: 48px;
-          height: 48px;
-          border-radius: 24px;
-          background-color: #EFEFEF;
-          margin-right: 10px;
-        }
-        &__text{
-          display: flex;
-          flex-direction: column;
-          &__name{
-            font-weight: 600;
-            font-size: 13px;
-            line-height: 13px;
-            color: #1E1E1E;
-          }
-          &__message{
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 15px;
-            color: #999999;
-          }
-        }
       }
+    &__content__item__avatar{
+      display: block;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      background-color: $background-color-secondary;
+      margin-right: 10px;
+    }
+    &__content__item__text {
+      display: flex;
+      flex-direction: column;
+    }
+    &__content__item__text__name{
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 13px;
+      color: $text-color-primary;
+    }
+    &__content__item__text__message{
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+      color: $text-color-secondary;
     }
   }
   &-content{
@@ -172,36 +174,36 @@
       padding: 15px 0;
       margin: 0 auto;
       overflow-y: scroll;
-      background-color: #fff;
-      &__head{
+      background-color: $background-color-primary;
+      &__head {
         height: 54px;
         justify-content: space-between;
         display: flex;
         align-content: center;
         align-items: center;
         flex-direction: row;
-        border-bottom: 1px solid #EAEAEA;
-        &__info{
-          align-content: center;
-          align-items: center;
-          flex-direction: row;
-          display: flex;
-          flex-wrap: nowrap;
-        }
-        &__actions{
-          background: url('../images/actions.svg') no-repeat;
-          height: 25px;
-          width: 25px;
-          cursor: pointer;
-        }
-        &__avatar{
-          display: block;
-          width: 48px;
-          height: 48px;
-          border-radius: 24px;
-          background-color: #EFEFEF;
-          margin-right: 10px;
-        }
+        border-bottom: 1px solid $border-color;
+      }
+      &__head__info{
+        align-content: center;
+        align-items: center;
+        flex-direction: row;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+      &__head__actions{
+        background: url('../images/actions.svg') no-repeat;
+        height: 25px;
+        width: 25px;
+        cursor: pointer;
+      }
+      &__head__avatar{
+        display: block;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background-color: $background-color-secondary;
+        margin-right: 10px;
       }
       &__wrapper {
         display: flex;
@@ -212,25 +214,25 @@
         font-size: 14px;
         padding: 10px 20px;
         border-radius: 8px 8px 8px 0;
-        color: #000;
-        background: #F8F8F8;
+        color: $text-color-primary;
+        background: $background-color-secondary;
         max-width: 600px;
         width: fit-content;
         position: relative;
         margin: 15px 0;
         word-break: break-all;
         direction: rtl;
-        &-own {
-          direction: ltr;
-          margin-left: auto;
-          border-radius: 8px 8px 0 8px;
-          background: rgba(255, 200, 87, 0.5);
-        }
+      }
+      &__message-own {
+        direction: ltr;
+        margin-left: auto;
+        border-radius: 8px 8px 0 8px;
+        background: rgba(255, 200, 87, 0.5);
       }
     }
 
     &__form {
-      border-top: 1px solid #EAEAEA;
+      border-top: 1px solid $border-color;
       &__form {
         display: flex;
         align-items: center;
@@ -238,24 +240,25 @@
         height: 54px;
         flex-wrap: nowrap;
       }
-      &__label{
+      &__label {
         background: url('../images/upload.svg');
         height: 32px;
         width: 32px;
         cursor: pointer;
         position: relative;
-        &__input-file{
-          opacity: 0;
-          height: 32px;
-          width: 32px;
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
       }
+      &__label__input-file{
+        opacity: 0;
+        height: 32px;
+        width: 32px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
       &__input {
         flex-grow: 1;
-        background: #EFEFEF;
+        background: $background-color-secondary;
         border-radius: 30px;
         height: 32px;
         font-size: 14px;
@@ -263,7 +266,7 @@
         border: none;
         margin: 0 10px;
         &:focus{
-          outline: #323031;
+          outline: $input-border-outline;
         }
       }
       &__button-send {

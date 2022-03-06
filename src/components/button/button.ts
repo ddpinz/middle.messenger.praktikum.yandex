@@ -1,4 +1,3 @@
-import { compile } from 'pug';
 import Block from '../../utils/Block';
 import buttonTemplate from './button.tmpl';
 
@@ -17,6 +16,6 @@ export default class Button extends Block<ButtonProps> {
     }
 
     public render() {
-        return this.compile(compile(buttonTemplate), { ...this.props });
+        return this.compile(buttonTemplate, { ...this.props });
     }
 }

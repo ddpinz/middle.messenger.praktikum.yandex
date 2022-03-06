@@ -1,5 +1,6 @@
+@import '../../styles/theme';
 .input-form{
-  border-bottom: 1px solid #323031;
+  border-bottom: 1px solid $input-border;
   width: 100%;
   max-width: 280px;
   margin: 16px 0;
@@ -14,14 +15,14 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 12px;
-  color: #DB3A34;
+  color: $warning;
 }
 .input-form label{
   display: block;font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
-  color: #999999;
+  color: $text-color-secondary;
 }
 .input-form input{
   border: none;
@@ -34,5 +35,5 @@
 }
 .input-form input:focus{
   outline: none !important;
-  border-color: #719ECE;
+  border-color: $input-border-focus;
 }

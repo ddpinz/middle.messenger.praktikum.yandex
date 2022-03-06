@@ -1,9 +1,9 @@
-import { compile } from 'pug';
 import Block from '../../../utils/Block';
 import editTemplate from './edit.tmpl';
 import Input from '../../../components/profile-input/input';
 import Button from '../../../components/button/button';
 import { EditProps } from './edit.types';
+import { regExpConstants, validationMessages } from '../../../utils/constants';
 
 export default class Edit extends Block<EditProps> {
     public constructor() {
@@ -18,8 +18,8 @@ export default class Edit extends Block<EditProps> {
                     type: 'email',
                     name: 'email',
                     required: 'true',
-                    error_pattern: 'адрес вида pochta@pochta.com',
-                    pattern: '\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}'
+                    errorPattern: validationMessages.email,
+                    pattern: regExpConstants.email
                 }),
                 login: new Input({
                     title: 'Логин',
@@ -28,35 +28,35 @@ export default class Edit extends Block<EditProps> {
                     required: 'true',
                     minlength: '3',
                     maxlength: '20',
-                    error_pattern: 'от 3 до 20 символов',
-                    pattern: '[a-zA-Z0-9-_]*[a-zA-Z]{1}[a-zA-Z0-9-_]*'
+                    errorPattern: validationMessages.login,
+                    pattern: regExpConstants.login
                 }),
-                first_name: new Input({
+                firstName: new Input({
                     title: 'Имя',
                     type: 'text',
                     name: 'first_name',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'не менее 3х символов',
-                    pattern: '^[A-ZА-ЯЁ]{1}[a-zа-яё-]+$'
+                    errorPattern: validationMessages.name,
+                    pattern: regExpConstants.name
                 }),
-                second_name: new Input({
+                secondName: new Input({
                     title: 'Фамилия',
                     type: 'text',
                     name: 'second_name',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'не менее 3х символов',
-                    pattern: '^[A-ZА-ЯЁ]{1}[a-zа-яё-]+$'
+                    errorPattern: validationMessages.name,
+                    pattern: regExpConstants.name
                 }),
-                display_name: new Input({
+                displayName: new Input({
                     title: 'Имя в чате',
                     type: 'text',
                     name: 'display_name',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'не менее 3х символов',
-                    pattern: '^[A-ZА-ЯЁ]{1}[a-zа-яё-]+$'
+                    errorPattern: validationMessages.name,
+                    pattern: regExpConstants.name
                 }),
                 phone: new Input({
                     title: 'Телефон',
@@ -64,8 +64,8 @@ export default class Edit extends Block<EditProps> {
                     name: 'phone',
                     required: 'true',
                     minlength: '3',
-                    error_pattern: 'номер телефона +79809999999',
-                    pattern: '^\\+?[0-9]{10,15}$'
+                    errorPattern: validationMessages.phone,
+                    pattern: regExpConstants.phone
                 }),
                 button: new Button({
                     text: 'Сохранить',
@@ -96,6 +96,6 @@ export default class Edit extends Block<EditProps> {
     }
 
     public render() {
-        return this.compile(compile(editTemplate), { ...this.props });
+        return this.compile(editTemplate, { ...this.props });
     }
 }

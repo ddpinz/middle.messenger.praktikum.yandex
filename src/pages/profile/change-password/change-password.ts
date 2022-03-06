@@ -1,4 +1,3 @@
-import { compile } from 'pug';
 import Block from '../../../utils/Block';
 import changePasswordTemplate from './change-password.tmpl';
 import Input from '../../../components/profile-input/input';
@@ -18,21 +17,21 @@ export default class ChangePassword extends Block<ChangePasswordProps> {
                     type: 'password',
                     name: 'oldPassword',
                     required: 'true',
-                    error_pattern: 'Введите старый пароль'
+                    errorPattern: 'Введите старый пароль'
                 }),
                 newPassword: new Input({
                     title: 'Новый пароль',
                     type: 'password',
                     name: 'newPassword',
                     required: 'true',
-                    error_pattern: 'Введите новый пароль'
+                    errorPattern: 'Введите новый пароль'
                 }),
-                retype_newPassword: new Input({
+                retypeNewPassword: new Input({
                     title: 'Повторите новый пароль',
                     type: 'password',
                     name: 'retype_newPassword',
                     required: 'true',
-                    error_pattern: 'Повторите новый пароль'
+                    errorPattern: 'Повторите новый пароль'
                 }),
                 button: new Button({
                     text: 'Сохранить',
@@ -50,13 +49,13 @@ export default class ChangePassword extends Block<ChangePasswordProps> {
             const data = {
                 oldPassword: formData.get('oldPassword'),
                 newPassword: formData.get('newPassword'),
-                retype_newPassword: formData.get('retype_newPassword'),
+                retypeNewPassword: formData.get('retype_newPassword'),
             };
             console.log(data);
         }
     }
 
     public render() {
-        return this.compile(compile(changePasswordTemplate), { ...this.props });
+        return this.compile(changePasswordTemplate, { ...this.props });
     }
 }
