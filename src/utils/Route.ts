@@ -1,6 +1,6 @@
 import Block from './Block';
 import { isEqual } from './helpers';
-import renderDOM from './renderDom';
+import renderDOM from './renderDOM';
 import { TBlockConnect } from './utils.types';
 
 export default class Route {
