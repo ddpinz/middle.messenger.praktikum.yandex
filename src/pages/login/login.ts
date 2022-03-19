@@ -2,15 +2,21 @@ import Block from '../../utils/Block';
 import loginTemplate from './login.tmpl';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
+import Link from '../../components/link/link';
 import { LoginProps } from './login.types';
+import router from '../../utils/Router';
+import AuthController from '../../controllers/AuthController';
+import { SignInData } from '../../api/AuthAPI';
 
 export default class Login extends Block<LoginProps> {
     public constructor() {
         super(
-            'div',
             {
-                linkText: 'Нет аккаунта?',
-                link: './registration.html',
+                link: new Link({
+                    text: 'Нет аккаунта?',
+                    className: 'link',
+                    path: '/sign-up'
+                }),
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
                 },
@@ -47,9 +53,13 @@ export default class Login extends Block<LoginProps> {
         if (e.target) {
             const formIsValid = (e.target as HTMLFormElement).closest('form')!.checkValidity();
             if (formIsValid) {
-                console.log(data);
+                AuthController.signIn(data as SignInData);
             }
         }
+    }
+
+    public goToPath(path: string) {
+        router.go(path);
     }
 
     public render() {

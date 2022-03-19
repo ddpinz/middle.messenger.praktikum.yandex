@@ -1,22 +1,4 @@
 extends ../../src/components/layout
 block content
-    div.layout
-        div.main
-            ul.main-ul
-                li
-                    a(class='button' href='login.pug') Войти
-                li
-                    a(class='button' href='registration.pug') Зарегестрироваться
-                li
-                    a(class='button' href='error-404.pug') 404
-                li
-                    a(class='button' href='error-500.pug') 5**
-                li
-                    a(class='button' href='chat.pug') Чат
-                li
-                    a(class='button' href='profile.pug') Профиль
-                li
-                    a(class='button' href='edit-profile.pug') Редактировать профиль
-                li
-                    a(class='button' href='change-password.pug') Изменить пароль
-            img(src="../images/owl.svg")
+    div(id="root")
+    script(src="./index.ts" type="module")

@@ -1,3 +1,5 @@
+import Block from "./Block";
+
 enum Methods {
     Get = 'GET',
     Post = 'POST',
@@ -11,6 +13,7 @@ type RequestOptions = {
     headers?: Record<string, string>;
     timeout?: number;
     data?: any;
+    isFile?: boolean;
 };
 
 type MetaProps = {
@@ -19,8 +22,15 @@ type MetaProps = {
     tagClass?: string,
 }
 
+type TBlock<T extends Record<string, unknown>> = Block<T>;
+
+type TBlockConnect<T extends Record<string, unknown>> = new (...args:any[])=>Block<T>;
+
+
 export {
     Methods,
     RequestOptions,
-    MetaProps
+    MetaProps,
+    TBlock,
+    TBlockConnect
 };

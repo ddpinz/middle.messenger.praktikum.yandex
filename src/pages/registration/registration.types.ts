@@ -1,9 +1,9 @@
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
+import Link from '../../components/link/link';
 
 type RegistrationProps = {
-  linkText?: string;
-  link?: string;
+  link?: Link;
   events?: {
     submit?: (e: Event) => void,
   },

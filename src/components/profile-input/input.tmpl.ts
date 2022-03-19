@@ -7,7 +7,7 @@ div.profile-form__line
             name=name
             placeholder=placeholder
             required=required
-            value=input_value
+            value=inputValue
             minlength=minlength
             maxlength=maxlength
             pattern=pattern

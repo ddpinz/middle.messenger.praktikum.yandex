@@ -10,23 +10,38 @@ function queryStringify(data: Record<string, unknown>) {
 }
 
 export default class HTTPTransport {
-    public get = (url: string, options: RequestOptions = {}) =>
-        this.request(url, { ...options, method: Methods.Get }, options.timeout);
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
 
-    public post = (url: string, options: RequestOptions = {}) =>
-        this.request(url, { ...options, method: Methods.Post }, options.timeout);
+    protected endpoint: string;
 
-    public put = (url: string, options: RequestOptions = {}) =>
-        this.request(url, { ...options, method: Methods.Put }, options.timeout);
+    constructor(endpoint: string) {
+        this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+    }
 
-    public patch = (url: string, options: RequestOptions = {}) =>
-        this.request(url, { ...options, method: Methods.Patch }, options.timeout);
+    public get<Response>(path: string, options: RequestOptions = {}): Promise<Response> {
+        return this.request(this.endpoint + path, { ...options, method: Methods.Get });
+    }
 
-    public delete = (url: string, options: RequestOptions = {}) =>
-        this.request(url, { ...options, method: Methods.Delete }, options.timeout);
+    public post<Response>(path: string, options: RequestOptions = {}): Promise<Response> {
+        return this.request(this.endpoint + path, { ...options, method: Methods.Post });
+    }
 
-    request = (url: string, options: RequestOptions = {}, timeout = 5000) => {
-        const { headers = {}, method, data } = options;
+    public put<Response>(path: string, options: RequestOptions = {}): Promise<Response> {
+        return this.request(this.endpoint + path, { ...options, method: Methods.Put });
+    }
+
+    public patch<Response>(path: string, options: RequestOptions = {}): Promise<Response> {
+        return this.request(this.endpoint + path, { ...options, method: Methods.Patch });
+    }
+
+    public delete<Response>(path: string, options: RequestOptions = {}): Promise<Response> {
+        return this.request(this.endpoint + path, { ...options, method: Methods.Delete });
+    }
+
+    private request<Response>(url: string, options: RequestOptions = {}): Promise<Response> {
+        const {
+            headers, method, data, isFile
+        } = options;
 
         return new Promise((resolve, reject) => {
             if (!method) {
@@ -44,23 +59,36 @@ export default class HTTPTransport {
                     : url,
             );
 
-            Object.keys(headers).forEach((key) => {
-                xhr.setRequestHeader(key, headers[key]);
-            });
+            if (!isFile) {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+            }
 
-            xhr.onload = function () {
-                resolve(xhr);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status < 400) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.response);
+                    }
+                }
             };
-            xhr.onabort = reject;
-            xhr.onerror = reject;
-            xhr.timeout = timeout;
-            xhr.ontimeout = reject;
+
+            xhr.onabort = () => reject({ reason: 'abort' });
+            xhr.onerror = () => reject({ reason: 'error' });
+            xhr.ontimeout = () => reject({ reason: 'timeout' });
+
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
 
             if (isGet || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                if (isFile) {
+                    xhr.send(data);
+                } else {
+                    xhr.send(JSON.stringify(data));
+                }
             }
         });
-    };
+    }
 }

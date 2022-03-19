@@ -2,6 +2,7 @@ type InputProps = {
   events?: {
     click?: () => void,
     focusout?: (e: Event) => void
+    change?: (e: Event) => void
   };
   title?: string;
   type?: string;

@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
-import pug from 'pug';
 import EventBus from './EventBus';
 import { MetaProps } from './utils.types';
+
+const pug = require('pug');
 
 export default abstract class Block<Props extends Record<string, unknown>> {
     private static EVENTS = {
@@ -19,15 +20,15 @@ export default abstract class Block<Props extends Record<string, unknown>> {
 
     public props: Record<string, unknown>;
 
-    private _id: string;
+    protected _id: string;
 
     protected children: Record<string, Block<Props>>;
 
-    constructor(tagName = 'div', propsAndChildren: Props) {
+    constructor(propsAndChildren: Props) {
         const eventBus = new EventBus();
         const { children, props } = this._getChildren(propsAndChildren);
         this._meta = {
-            tagName,
+            tagName: 'div',
             props
         };
         this.children = children;
@@ -57,6 +58,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
 
     private _componentDidMount() {
         this.componentDidMount();
+
         Object.values(this.children).forEach(child => {
             if (Array.isArray(child)) {
                 child.forEach(elem => {
@@ -73,6 +75,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
     }
 
     public componentDidMount() {
+        return true;
     }
 
     private _componentDidUpdate(oldProps: Record<string, unknown>, newProps: Record<string, unknown>) {
@@ -85,7 +88,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
     }
 
     public componentDidUpdate(oldProps: Record<string, unknown>, newProps: Record<string, unknown>) {
-        return oldProps !== newProps;
+        return true;
     }
 
     public setProps = (nextProps: Record<string, unknown>) => {
@@ -98,6 +101,10 @@ export default abstract class Block<Props extends Record<string, unknown>> {
 
     get element() {
         return this._element;
+    }
+
+    get id() {
+        return this._id;
     }
 
     private _render() {
@@ -146,6 +153,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
                 }
             }
         });
+
         return { children, props };
     }
 
@@ -160,6 +168,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
             set(target: Record<string, unknown>, prop: string, value: unknown) {
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
+                //self.eventBus().emit(Block.EVENTS.FLOW_CDU);
                 return true;
             },
             deleteProperty() {
@@ -178,11 +187,15 @@ export default abstract class Block<Props extends Record<string, unknown>> {
     }
 
     public show() {
-    this.getContent()!.style.display = 'block';
+        this.getContent()!.style.display = 'block';
     }
 
     public hide() {
-    this.getContent()!.style.display = 'none';
+        this.getContent()!.style.display = 'none';
+    }
+
+    public toString() {
+        return this._element.outerHTML;
     }
 
     private _addEvents() {
@@ -191,7 +204,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
             return;
         }
         Object.entries(events).forEach(([eventName, cb]: [string, (e: Event) => void]) => {
-            this._element.addEventListener(eventName, cb);
+            return this._element?.addEventListener(eventName, cb);
         });
     }
 
@@ -212,7 +225,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
     public compile(template: string, context: Record<string, unknown>) {
         const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
-        Object.entries(this.children).forEach(([key, child]: [string, Block<Props>]) => {
+        Object.entries(this.children).forEach(([key, child]) => {
             if (Array.isArray(child)) {
                 child.forEach((elem: Block<Props>) => {
                     if (context[key]) {
