@@ -1,5 +1,6 @@
 import { Input } from '../../../components/profile-input';
 import { Button } from '../../../components/button';
+import { Link } from '../../../components/link';
 
 type ChangePasswordProps = {
   events?: {
@@ -9,6 +10,7 @@ type ChangePasswordProps = {
   newPassword?: Input;
   retypeNewPassword?: Input;
   button?: Button;
+  backLink?: Link;
 }
 
 export {

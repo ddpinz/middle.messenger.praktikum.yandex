@@ -26,6 +26,7 @@
     "no-case-declarations": ["off"],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-debugger": ["off"],
+    "no-undef": ["off"],
     "no-else-return": ["off"],
     "no-lonely-if": ["off"],
     "no-nested-ternary": [0],

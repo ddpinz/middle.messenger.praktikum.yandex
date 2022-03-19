@@ -5,7 +5,6 @@ import { InputProps } from './input.types';
 export default class Input extends Block<InputProps> {
     public constructor(props: InputProps) {
         super(
-            'div',
             {
                 ...props,
                 events: {

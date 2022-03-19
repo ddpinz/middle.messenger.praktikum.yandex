@@ -2,16 +2,21 @@ import Block from '../../utils/Block';
 import registrationTemplate from './registration.tmpl';
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
+import Link from '../../components/link/link';
 import { RegistrationProps } from './registration.types';
 import { regExpConstants, validationMessages } from '../../utils/constants';
+import AuthController from '../../controllers/AuthController';
+import { SignUpData } from '../../api/AuthAPI';
 
 export default class Registration extends Block<RegistrationProps> {
     public constructor() {
         super(
-            'div',
             {
-                linkText: 'Регистрация',
-                link: './login.html',
+                link: new Link({
+                    text: 'Войти',
+                    className: 'link',
+                    path: '/'
+                }),
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
                 },
@@ -102,11 +107,12 @@ export default class Registration extends Block<RegistrationProps> {
             const data = {
                 email: formData.get('email'),
                 login: formData.get('login'),
-                firstName: formData.get('first_name'),
-                secondName: formData.get('second_name'),
+                first_name: formData.get('first_name'),
+                second_name: formData.get('second_name'),
                 phone: formData.get('phone'),
                 password: formData.get('password')
             };
+            AuthController.signUp(data as SignUpData);
             console.log(data);
         }
     }

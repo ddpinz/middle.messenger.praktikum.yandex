@@ -5,7 +5,6 @@ import { InputProps } from './input.types';
 export default class Input extends Block<InputProps> {
     public constructor(props: InputProps) {
         super(
-            'div',
             {
                 ...props,
                 events: {
@@ -13,6 +12,14 @@ export default class Input extends Block<InputProps> {
                 }
             },
         );
+    }
+
+    public compare(value: string, referenceValue?: string) {
+        if (value !== referenceValue) {
+            this.setProps({
+                errorMessage: this.props.errorPattern
+            });
+        }
     }
 
     public handleFocusOut(e: Event) {

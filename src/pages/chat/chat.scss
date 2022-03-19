@@ -3,41 +3,11 @@
 @mixin icon {
   height: 22px;
   width: 22px;
-  background-size: cover;
+  margin-right: 20px;
+  background-size: contain;
   background-repeat: no-repeat;
-  display: inline-block;
+  display: block;
 }
-.icon{
-  &-add{
-    @include icon;
-    background-image: url("../images/icons/add.svg");
-  }
-  &-remove{
-    @include icon;
-    background-image: url("../images/icons/delete.svg");
-  }
-  &-change-avatar{
-    @include icon;
-    background-image: url("../images/icons/avatar.svg");
-  }
-  &-trash{
-    @include icon;
-    background-image: url("../images/icons/trash.svg");
-  }
-  &-upload-photo{
-    @include icon;
-    background-image: url("../images/icons/photo.svg");
-  }
-  &-upload-file{
-    @include icon;
-    background-image: url("../images/icons/file.svg");
-  }
-  &-share-location{
-    @include icon;
-    background-image: url("../images/icons/location.svg");
-  }
-}
-
 
 .chat{
   width: 100vw;
@@ -46,14 +16,19 @@
   display: flex;
   flex-direction: row;
   &-tooltip {
+    width: 260px;
+    display: none;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 30px;
+    right: 0;
     z-index: 100;
     background: $background-color-primary;
     box-shadow: 0px 0px 6px $black-transparent-14;
     border-radius: 12px;
     padding: 7px 15px;
+  }
+  &-tooltip-show{
+    display: block;
   }
   &-tooltip__list{
   }
@@ -62,9 +37,19 @@
     align-items: center;
     cursor: pointer;
     margin: 8px 0;
+    & > div{
+      display: flex;
+    }
+    & span{
+      display: flex;
+    }
   }
   &-tooltip__item-warning{
     color: $warning;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 8px 0;
   }
   &-tooltip__item span:first-of-type{
     margin-right: 10px;
@@ -148,19 +133,60 @@
     &__content__item__text {
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      height: calc(100% - 20px);
     }
     &__content__item__text__name{
       font-weight: 600;
-      font-size: 13px;
+      font-size: 15px;
       line-height: 13px;
       color: $text-color-primary;
     }
     &__content__item__text__message{
       font-style: normal;
       font-weight: 500;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 15px;
       color: $text-color-secondary;
+      flex-direction: row;
+      &-user{
+        &:after{
+          content: ': ';
+          display: inline-block;
+        }
+        display: inline-block;
+        margin-right: 10px;
+        color: $text-color-primary;
+      }
+      &-content{
+
+      }
+    }
+    &__content__item__text__status {
+      display: flex;
+      flex-direction: column;
+      width: 48px;
+      justify-content: space-between;
+      height: calc(100% - 20px);
+      align-items: center;
+      padding: 10px 0;
+      & .date{
+        font-size: 10px;
+      }
+      & .count{
+        background-color: $primary;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        color: $text-color-light;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        font-size: 12px;
+      }
     }
   }
   &-content{
@@ -190,6 +216,9 @@
         flex-direction: row;
         display: flex;
         flex-wrap: nowrap;
+      }
+      &__head__actions__wrapper{
+        position: relative;
       }
       &__head__actions{
         background: url('../images/actions.svg') no-repeat;
@@ -221,7 +250,7 @@
         position: relative;
         margin: 15px 0;
         word-break: break-all;
-        direction: rtl;
+        //direction: rtl;
       }
       &__message-own {
         direction: ltr;

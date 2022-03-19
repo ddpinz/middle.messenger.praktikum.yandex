@@ -3,7 +3,7 @@ div.layout
     form(action="")
         div.login-form
             div
-                h3 #{linkText}
+                h3 Регистрация
                 | !{email}
                 | !{login}
                 | !{name}
@@ -13,5 +13,5 @@ div.layout
                 | !{retypePassword}
             div
                 | !{button}
-                a(class="link" href=link) #{linkText}
+                | !{link} 
 `;

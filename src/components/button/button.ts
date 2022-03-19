@@ -3,7 +3,7 @@ import buttonTemplate from './button.tmpl';
 
 type ButtonProps = {
     events?: {
-        click: () => void,
+        click: (e: Event) => void,
     };
     className?: string;
     type?: string;
@@ -12,7 +12,7 @@ type ButtonProps = {
 
 export default class Button extends Block<ButtonProps> {
     public constructor(props: ButtonProps) {
-        super('div', props);
+        super(props);
     }
 
     public render() {
