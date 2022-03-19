@@ -1,6 +1,6 @@
 
-Ссылка на PULL REQUEST 2 sprint:
-[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/2)
+Ссылка на PULL REQUEST 3 sprint:
+[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/3)
 
 ## Описание
 
