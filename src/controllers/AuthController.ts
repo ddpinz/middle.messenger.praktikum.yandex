@@ -21,13 +21,18 @@ class AuthController {
     }
 
     async signIn(data: SignInData) {
-        await this.api.signIn(data);
-
-        try {
-            await this.getUser();
-            router.go('/messenger');
+        try{
+            await this.api.signIn(data);
+            store.set('loginError', '');
+            try {
+                await this.getUser();
+                router.go('/messenger');
+            } catch (e) {
+                router.go('/');
+            }
         } catch (e) {
-            router.go('/');
+            console.log(e.reason);
+            store.set('loginError', e.reason);
         }
     }
 

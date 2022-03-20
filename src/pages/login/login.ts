@@ -7,11 +7,15 @@ import { LoginProps } from './login.types';
 import router from '../../utils/Router';
 import AuthController from '../../controllers/AuthController';
 import { SignInData } from '../../api/AuthAPI';
+import { regExpConstants, validationMessages } from '../../utils/constants';
+import { connect } from '../../utils/Store';
+import { Props } from '../../utils/helpers';
 
-export default class Login extends Block<LoginProps> {
-    public constructor() {
+class Login extends Block<LoginProps> {
+    public constructor(props: LoginProps) {
         super(
             {
+                ...props,
                 link: new Link({
                     text: 'Нет аккаунта?',
                     className: 'link',
@@ -25,14 +29,16 @@ export default class Login extends Block<LoginProps> {
                     type: 'text',
                     name: 'login',
                     required: 'true',
-                    errorPattern: 'Введите логин'
+                    errorPattern: validationMessages.login,
+                    pattern: regExpConstants.login
                 }),
                 password: new Input({
                     title: 'Пароль',
                     type: 'password',
                     name: 'password',
                     required: 'true',
-                    errorPattern: 'Введите пароль'
+                    errorPattern: validationMessages.password,
+                    pattern: regExpConstants.password
                 }),
                 button: new Button({
                     text: 'Авторизоваться',
@@ -66,3 +72,11 @@ export default class Login extends Block<LoginProps> {
         return this.compile(loginTemplate, { ...this.props });
     }
 }
+
+function mapStateToProps(state: Props) {
+    return {
+        loginError: state?.loginError
+    };
+}
+
+export default connect(Login, mapStateToProps);

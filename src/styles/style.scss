@@ -64,7 +64,7 @@
     width: 28px;
     cursor: pointer;
     text-decoration: none;
-    background-image: url("../images/back.svg");
+    background-image: url('../images/back.svg');
   }
   .login-form{
     min-height: 460px;
@@ -95,6 +95,11 @@
     text-align: center;
     color: #1E1E1E;
     margin: 30px 0 40px;
+  }
+  .login-error{
+    color: $warning;
+    font-size: 14px;
+    margin-top: 30px;
   }
   .link{
     font-style: normal;

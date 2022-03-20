@@ -1,6 +1,6 @@
 const regExpConstants = {
     email: '\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}',
-    login: '[a-zA-Z0-9-_]*[a-zA-Z]{1}[a-zA-Z0-9-_]*',
+    login: '([a-zA-Z0-9-_]*[a-zA-Z]{1}[a-zA-Z0-9-_]*){3,20}',
     name: '^[A-ZА-ЯЁ]{1}[a-zа-яё-]+$',
     phone: '\\+?[0-9]{10,15}$',
     password: '((?=.*\\d)(?=.*[0-9])(?=.*[A-Z]).{8,40})'

@@ -15,6 +15,7 @@ type LoginProps = {
   password?: Input;
   retypePassword?: Input;
   button?: Button;
+  loginError?: string;
 }
 
 export {

@@ -8,8 +8,8 @@ import ChatItems from './components/chat-items';
 import ChatMessages from './components/chat-messages';
 import store, { connect } from '../../utils/Store';
 import { Props } from '../../utils/helpers';
-import SendMessage from "./components/send-message/send-message";
-import {Link} from "../../components/link";
+import SendMessage from './components/send-message/send-message';
+import { Link } from '../../components/link';
 
 class Chat extends Block<ChatProps> {
     public constructor(props) {

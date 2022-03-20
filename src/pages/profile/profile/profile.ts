@@ -12,6 +12,7 @@ class Profile extends Block<ProfileProps> {
     public constructor(props) {
         super(
             {
+                ...props,
                 email: new ProfileLine({
                     title: 'Почта',
                     value: props?.email

@@ -1,4 +1,4 @@
-import Block from "./Block";
+import Block from './Block';
 
 enum Methods {
     Get = 'GET',
@@ -25,7 +25,6 @@ type MetaProps = {
 type TBlock<T extends Record<string, unknown>> = Block<T>;
 
 type TBlockConnect<T extends Record<string, unknown>> = new (...args:any[])=>Block<T>;
-
 
 export {
     Methods,

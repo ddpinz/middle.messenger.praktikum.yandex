@@ -13,7 +13,9 @@ div.layout
         div.chat-content
             div.chat-content__chat__head
                 div.chat-content__chat__head__info
-                    div.chat-content__chat__head__avatar(style="background-image: url('" + currentChat.avatar + "');")
+                    div.chat-content__chat__head__avatar
+                        if currentChat.avatar
+                            img(src=currentChat.avatar)
                     div.chat-content__chat__head__title=currentChat.title
                 | !{actionsPopup}
             div.chat-content__chat

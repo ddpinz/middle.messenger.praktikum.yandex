@@ -10,7 +10,7 @@ class UserController {
 
     async update(data: ProfileData) {
         const user = await this.api.update(data);
-        user.avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
+        user.avatar = user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null;
 
         store.set('currentUser', user);
     }
@@ -25,7 +25,7 @@ class UserController {
 
     async updateAvatar(data: FormData) {
         const user = await this.api.updateAvatar(data);
-        user.avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
+        user.avatar = user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null;
 
         store.set('currentUser', user);
     }

@@ -11,6 +11,8 @@ div.layout
         div
             div
                 div.profile-form__avatar
+                    if avatar
+                        img(src=avatar)
             | !{email}
             | !{login}
             | !{firstName}

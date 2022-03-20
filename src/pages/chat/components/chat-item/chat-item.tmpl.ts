@@ -1,6 +1,8 @@
 export default `
 div.chat-list__content__item(data-chat-data=chat)
-    div.chat-list__content__item__avatar(style="background-image: url('" + avatar + "');")
+    div.chat-list__content__item__avatar
+        if avatar
+            img(src=avatar)
     div.chat-list__content__item__text
         div.chat-list__content__item__text__name=title
         div.chat-list__content__item__text__message

@@ -11,8 +11,8 @@ interface ChatData {
 }
 
 interface ChatUser {
-    users?: number [],
-    chatId?: number
+    users?: number [];
+    chatId?: number;
 }
 
 interface ChatAvatar {

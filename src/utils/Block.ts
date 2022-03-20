@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import pug from 'pug';
 import EventBus from './EventBus';
 import { MetaProps } from './utils.types';
-
-const pug = require('pug');
 
 export default abstract class Block<Props extends Record<string, unknown>> {
     private static EVENTS = {
@@ -168,7 +167,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
             set(target: Record<string, unknown>, prop: string, value: unknown) {
                 target[prop] = value;
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
-                //self.eventBus().emit(Block.EVENTS.FLOW_CDU);
+                // self.eventBus().emit(Block.EVENTS.FLOW_CDU);
                 return true;
             },
             deleteProperty() {
@@ -203,9 +202,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
         if (!events) {
             return;
         }
-        Object.entries(events).forEach(([eventName, cb]: [string, (e: Event) => void]) => {
-            return this._element?.addEventListener(eventName, cb);
-        });
+        Object.entries(events).forEach(([eventName, cb]: [string, (e: Event) => void]) => this._element?.addEventListener(eventName, cb));
     }
 
     private _removeEvents() {

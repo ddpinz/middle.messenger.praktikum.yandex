@@ -2,30 +2,30 @@
 .icon{
   &-add{
     @include icon;
-    background-image: url("../images/icons/add.svg");
+    background-image: url('../images/icons/add.svg');
   }
   &-remove{
     @include icon;
-    background-image: url("../images/icons/delete.svg");
+    background-image: url('../images/icons/delete.svg');
   }
   &-change-avatar{
     @include icon;
-    background-image: url("../images/icons/avatar.svg");
+    background-image: url('../images/icons/avatar.svg');
   }
   &-trash{
     @include icon;
-    background-image: url("../images/icons/trash.svg");
+    background-image: url('../images/icons/trash.svg');
   }
   &-upload-photo{
     @include icon;
-    background-image: url("../images/icons/photo.svg");
+    background-image: url('../images/icons/photo.svg');
   }
   &-upload-file{
     @include icon;
-    background-image: url("../images/icons/file.svg");
+    background-image: url('../images/icons/file.svg');
   }
   &-share-location{
     @include icon;
-    background-image: url("../images/icons/location.svg");
+    background-image: url('../images/icons/location.svg');
   }
 }
