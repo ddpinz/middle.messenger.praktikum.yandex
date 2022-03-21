@@ -6,30 +6,21 @@ mixin profileLink(data)
 
 div.layout
     div.sidebar
-        div.back-link(onclick="window.location.href='chat.html'")
+        | !{go2Chat}
     div.profile-form
         div
-            div.profile-form__avatar
+            div
+                div.profile-form__avatar
+                    if avatar
+                        img(src=avatar)
             | !{email}
             | !{login}
-            | !{first_name}
-            | !{second_name}
-            | !{display_name}
+            | !{firstName}
+            | !{secondName}
+            | !{displayName}
             | !{phone}
         div.profile-form__button
-            +profileLink({
-                onclick: "window.location.href='edit-profile.html'",
-                className: 'link-default',
-                title: "Изменить данные"
-            })
-            +profileLink({
-                onclick: "window.location.href='change-password.html'",
-                className: "link-default",
-                title: "Изменить пароль"
-            })
-            +profileLink({
-                onclick: "window.location.href='login.html'",
-                className: "link-warning",
-                title: "Выйти"
-            })
+            |  !{edit}
+            |  !{changePassword}
+            |  !{logout}
 `;

@@ -4,20 +4,25 @@ import Input from '../../../components/profile-input/input';
 import Button from '../../../components/button/button';
 import { EditProps } from './edit.types';
 import { regExpConstants, validationMessages } from '../../../utils/constants';
+import Avatar from '../components/avatar/avatar';
+import { Link } from '../../../components/link';
+import { connect, StoreData } from '../../../utils/Store';
+import UserController from "../../../controllers/UserController";
 
-export default class Edit extends Block<EditProps> {
-    public constructor() {
+class Edit extends Block<EditProps> {
+    public constructor(props) {
         super(
-            'div',
             {
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
                 },
+                avatar: new Avatar({}),
                 email: new Input({
                     title: 'Почта',
                     type: 'email',
                     name: 'email',
                     required: 'true',
+                    inputValue: props.email,
                     errorPattern: validationMessages.email,
                     pattern: regExpConstants.email
                 }),
@@ -28,6 +33,7 @@ export default class Edit extends Block<EditProps> {
                     required: 'true',
                     minlength: '3',
                     maxlength: '20',
+                    inputValue: props.login,
                     errorPattern: validationMessages.login,
                     pattern: regExpConstants.login
                 }),
@@ -37,6 +43,7 @@ export default class Edit extends Block<EditProps> {
                     name: 'first_name',
                     required: 'true',
                     minlength: '3',
+                    inputValue: props.first_name,
                     errorPattern: validationMessages.name,
                     pattern: regExpConstants.name
                 }),
@@ -46,6 +53,7 @@ export default class Edit extends Block<EditProps> {
                     name: 'second_name',
                     required: 'true',
                     minlength: '3',
+                    inputValue: props.second_name,
                     errorPattern: validationMessages.name,
                     pattern: regExpConstants.name
                 }),
@@ -55,6 +63,7 @@ export default class Edit extends Block<EditProps> {
                     name: 'display_name',
                     required: 'true',
                     minlength: '3',
+                    inputValue: props.display_name,
                     errorPattern: validationMessages.name,
                     pattern: regExpConstants.name
                 }),
@@ -64,6 +73,7 @@ export default class Edit extends Block<EditProps> {
                     name: 'phone',
                     required: 'true',
                     minlength: '3',
+                    inputValue: props.phone,
                     errorPattern: validationMessages.phone,
                     pattern: regExpConstants.phone
                 }),
@@ -71,6 +81,10 @@ export default class Edit extends Block<EditProps> {
                     text: 'Сохранить',
                     type: 'submit',
                     className: 'btn-primary'
+                }),
+                go2Settings: new Link({
+                    className: 'back-link',
+                    path: '/settings'
                 })
             },
         );
@@ -90,6 +104,7 @@ export default class Edit extends Block<EditProps> {
         if (e.target) {
             const formIsValid = (e.target as HTMLFormElement).closest('form')!.checkValidity();
             if (formIsValid) {
+                UserController.update(data);
                 console.log(data);
             }
         }
@@ -99,3 +114,18 @@ export default class Edit extends Block<EditProps> {
         return this.compile(editTemplate, { ...this.props });
     }
 }
+
+function mapStateToProps(state: StoreData) {
+    return {
+        id: state?.currentUser?.id,
+        first_name: state?.currentUser?.first_name,
+        second_name: state?.currentUser?.second_name,
+        display_name: state?.currentUser?.display_name,
+        login: state?.currentUser?.login,
+        email: state?.currentUser?.email,
+        phone: state?.currentUser?.phone,
+        avatar: state?.currentUser?.avatar
+    };
+}
+
+export default connect(Edit, mapStateToProps);

@@ -5,7 +5,6 @@ import { Error404Props } from './error-404.types';
 export default class Page404 extends Block<Error404Props> {
     public constructor() {
         super(
-            'div',
             {},
         );
     }

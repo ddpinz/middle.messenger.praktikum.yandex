@@ -6,7 +6,9 @@ div.layout
                 h3 Вход
                 | !{login}
                 | !{password}
+                if loginError
+                    div.login-error=loginError
             div
                 | !{button}
-                a(class="link" href=link) #{linkText}
+                | !{link} 
 `;

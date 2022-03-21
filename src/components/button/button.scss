@@ -1,10 +1,9 @@
 @import '../../styles/theme';
-.btn-primary{
+
+@mixin btn{
   width: 280px;
   height: 37px;
-  background: $primary;
   border-radius: 8px;
-  color: $text-color-light;
   outline: none;
   border: none;
   font-style: normal;
@@ -13,4 +12,23 @@
   line-height: 16px;
   margin: 14px 0 ;
   cursor: pointer;
+}
+
+.btn-primary{
+  @include btn;
+  background: $primary;
+  color: $text-color-light;
+}
+.btn-secondary{
+  @include btn;
+  background: $primary-light;
+  color: $text-color-light;
+}
+.btn-warning{
+  @include btn;
+  background: $warning;
+  color: $text-color-light;
+}
+.btn-small{
+  width: 140px;
 }

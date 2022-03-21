@@ -1,17 +1,23 @@
 import Block from '../../../utils/Block';
+import UserController from '../../../controllers/UserController';
 import changePasswordTemplate from './change-password.tmpl';
 import Input from '../../../components/profile-input/input';
 import Button from '../../../components/button/button';
 import { ChangePasswordProps } from './change-password.types';
+import { PasswordData } from '../../../api/UserAPI';
+import { Link } from '../../../components/link';
 
 export default class ChangePassword extends Block<ChangePasswordProps> {
     public constructor() {
         super(
-            'div',
             {
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
                 },
+                backLink: new Link({
+                    className: 'back-link',
+                    path: '/settings'
+                }),
                 oldPassword: new Input({
                     title: 'Старый пароль',
                     type: 'password',
@@ -48,10 +54,9 @@ export default class ChangePassword extends Block<ChangePasswordProps> {
         if (formData.get('newPassword') === formData.get('retype_newPassword')) {
             const data = {
                 oldPassword: formData.get('oldPassword'),
-                newPassword: formData.get('newPassword'),
-                retypeNewPassword: formData.get('retype_newPassword'),
+                newPassword: formData.get('newPassword')
             };
-            console.log(data);
+            UserController.updatePassword(data as PasswordData);
         }
     }
 

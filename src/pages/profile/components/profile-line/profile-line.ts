@@ -5,7 +5,6 @@ import { ProfileLineProps } from './profile-line.types';
 export default class Input extends Block<ProfileLineProps> {
     public constructor(props: ProfileLineProps) {
         super(
-            'div',
             {
                 ...props
             },

@@ -1,9 +1,9 @@
 import Input from '../../components/input/input';
 import Button from '../../components/button/button';
+import Link from '../../components/link/link';
 
 type LoginProps = {
-  linkText?: string;
-  link?: string;
+  link?: Link;
   events?: {
     submit?: (e: Event) => void,
   },
@@ -15,6 +15,7 @@ type LoginProps = {
   password?: Input;
   retypePassword?: Input;
   button?: Button;
+  loginError?: string;
 }
 
 export {
