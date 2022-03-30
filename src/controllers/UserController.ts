@@ -1,5 +1,6 @@
 import UserAPI, { PasswordData, ProfileData } from '../api/UserAPI';
 import store from '../utils/Store';
+import {Props} from "../utils/helpers";
 
 class UserController {
     protected api: UserAPI;
@@ -10,7 +11,7 @@ class UserController {
 
     async update(data: ProfileData) {
         const user = await this.api.update(data);
-        user.avatar = user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null;
+        (user as Props).avatar = (user as Props).avatar ? `https://ya-praktikum.tech/api/v2/resources${(user as Props).avatar}` : null;
 
         store.set('currentUser', user);
     }
@@ -25,7 +26,7 @@ class UserController {
 
     async updateAvatar(data: FormData) {
         const user = await this.api.updateAvatar(data);
-        user.avatar = user.avatar ? `https://ya-praktikum.tech/api/v2/resources${user.avatar}` : null;
+        (user as Props).avatar = (user as Props).avatar ? `https://ya-praktikum.tech/api/v2/resources${(user as Props).avatar}` : null;
 
         store.set('currentUser', user);
     }

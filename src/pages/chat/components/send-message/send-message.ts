@@ -18,7 +18,10 @@ class SendMessage extends Block<Props> {
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         const message = formData.get('message');
-        ChatController.sendMessage(message);
+        this.setProps({
+            value: ''
+        });
+        ChatController.sendMessage(message as string);
     }
 
     render() {

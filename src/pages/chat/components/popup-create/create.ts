@@ -11,7 +11,7 @@ type ActionsProps = {
 }
 
 export default class Create extends Block<ActionsProps> {
-    constructor(props: ActionsProps) {
+    constructor() {
         super({
             addChatModal: new Modal({
                 id: 'add_chat_modal',

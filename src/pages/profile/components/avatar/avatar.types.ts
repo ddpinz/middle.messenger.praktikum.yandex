@@ -1,7 +1,5 @@
 type AvatarProps = {
-    events?: {
-        change: (e: Event) => void;
-    }
+    events?: {}
     title?: string;
     value?: string;
     avatar?: string;

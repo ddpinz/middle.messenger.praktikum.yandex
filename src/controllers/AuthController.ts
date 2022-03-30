@@ -21,7 +21,7 @@ class AuthController {
     }
 
     async signIn(data: SignInData) {
-        try{
+        try {
             await this.api.signIn(data);
             store.set('loginError', '');
             try {
@@ -41,8 +41,8 @@ class AuthController {
     }
 
     async getUser() {
-        const user: Props = await this.api.getUser();
-        user.avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
+        const user: Props | unknown = await this.api.getUser();
+        (user as Props).avatar = `https://ya-praktikum.tech/api/v2/resources${(user as Props).avatar}`;
 
         store.set('currentUser', user);
     }

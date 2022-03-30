@@ -6,7 +6,7 @@ import ChatController from '../../../../controllers/ChatController';
 import { Props } from '../../../../utils/helpers';
 
 class Avatar extends Block<AvatarProps> {
-    public constructor(props) {
+    public constructor(props: Props) {
         super(
             {
                 ...props,
@@ -20,7 +20,8 @@ class Avatar extends Block<AvatarProps> {
     public handleChange(e: Event) {
         const formData = new FormData();
 
-        formData.append('avatar', (e.target as HTMLInputElement)!.files[0]);
+        // @ts-ignore
+        formData.append('avatar', (e.target as HTMLInputElement)?.files[0]);
         const { currentChat = {} } = store.getState();
         const { id: chatId } = currentChat;
         ChatController.updateAvatar(chatId, formData);

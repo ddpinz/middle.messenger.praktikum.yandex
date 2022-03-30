@@ -3,8 +3,8 @@ import Modal from '../../../../components/modal/modal';
 import PopupButton from '../../../../components/popup-button';
 import actionsTmpl from './actions.tmpl';
 import AddUser from '../add-user-card/add-user';
-import DelUser from "../del-user-card/del-user";
-import Avatar from "../change-avatar-card/avatar";
+import DelUser from '../del-user-card/del-user';
+import Avatar from '../change-avatar-card/avatar';
 
 type ActionsProps = {
     addButton?: PopupButton;
@@ -21,7 +21,7 @@ type ActionsProps = {
 }
 
 export default class Actions extends Block<ActionsProps> {
-    constructor(props: ActionsProps) {
+    constructor() {
         super({
             addButton: new PopupButton({
                 className: 'chat-tooltip__item',

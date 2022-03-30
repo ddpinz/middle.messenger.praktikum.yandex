@@ -2,6 +2,7 @@ import ChatAPI from '../api/ChatAPI';
 import store from '../utils/Store';
 import ChatItem from '../pages/chat/components/chat-item';
 import ChatMessage from '../pages/chat/components/chat-message';
+import { Props } from '../utils/helpers';
 
 class ChatController {
     protected api: ChatAPI;
@@ -10,9 +11,9 @@ class ChatController {
         this.api = new ChatAPI();
     }
 
-    async read(data) {
-        const chats: unknown[] = await this.api.read(data);
-        const arrOfChats = chats.map((item: any) => new ChatItem({
+    async read(data: Props) {
+        const chats = await this.api.read(data);
+        const arrOfChats = (chats as []).map((item: any) => new ChatItem({
             avatar: item.avatar && `https://ya-praktikum.tech/api/v2/resources${item.avatar}`,
             title: item.title,
             last_message: item.last_message,
@@ -25,24 +26,21 @@ class ChatController {
             chat: item
         }));
 
-        store.set('сhat', [...chats]);
+        store.set('сhat', [...chats as []]);
         store.set('chatItems', arrOfChats);
     }
 
-    async update(data) {
-
-    }
-
-    async create(data) {
+    async create(data: Props) {
         await this.api.create(data);
         await this.read({ limit: 1000 });
     }
 
-    async setCurrentChat(chat) {
+    async setCurrentChat(chat: Props | null) {
         store.set('currentChat', chat);
         if (chat === null) return;
         try {
             const response = await this.api.getChatToken(chat.id);
+            // @ts-ignore
             const { token } = response;
             if (token) {
                 const { currentUser } = store.getState();
@@ -61,12 +59,13 @@ class ChatController {
                     const { id } = currentUser;
                     let messagesStore = [];
                     const data = JSON.parse(event.data);
-                    if (data.type !== 'pong') {
+                    if (data.type !== 'pong' && data.type !== 'user connected') {
                         if (messages) {
-                            messagesStore = Array.isArray(data) ? [...messages, ...data] : [...messages, data];
+                            messagesStore = Array.isArray(data) ? [...data, ...messages] : [data, ...messages];
                         } else {
                             messagesStore = Array.isArray(data) ? [...data] : [data];
                         }
+                        console.log(messagesStore);
                         const messagesItems = messagesStore.map(message => new ChatMessage({
                             className: message.user_id === id ? 'chat-content__chat__message chat-content__chat__message-own' : 'chat-content__chat__message',
                             chat_id: message.chat_id,
@@ -78,6 +77,7 @@ class ChatController {
                             type: message.type,
                             user_id: message.user_id
                         }));
+                        console.log(messagesItems);
                         store.set('messages', messagesStore);
                         store.set('messagesItems', messagesItems);
                     }
@@ -96,7 +96,7 @@ class ChatController {
         }
     }
 
-    async sendMessage(message) {
+    async sendMessage(message: string) {
         const { socket } = store.getState();
         if (socket) {
             socket.send(
@@ -126,7 +126,7 @@ class ChatController {
 
     async updateAvatar(chatId: number, data: FormData) {
         const chat = await this.api.updateAvatar({ chatId, avatar: data });
-        const avatar = `https://ya-praktikum.tech/api/v2/resources${chat.avatar}`;
+        const avatar = `https://ya-praktikum.tech/api/v2/resources${(chat as Props).avatar}`;
 
         store.set('currentChat.avatar', avatar);
     }

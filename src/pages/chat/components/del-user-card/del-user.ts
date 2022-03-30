@@ -10,7 +10,7 @@ type DelUserProps = {
     delButton?: Button;
     cancelButton?: Button;
     events?: {
-        submit: (e: Event) => void;
+        submit?: (e: Event) => void;
     }
 }
 
@@ -36,7 +36,7 @@ class DelUser extends Block<DelUserProps> {
                 text: 'Отмена',
                 className: 'btn-secondary btn-small',
                 events: {
-                    click: (e: Event) => this.hide(e)
+                    click: () => this.hide()
                 }
             })
         });
@@ -56,7 +56,7 @@ class DelUser extends Block<DelUserProps> {
         }
     }
 
-    public hide(e: Event) {
+    public hide() {
         const element: Element | null = document.getElementById('remove_user_modal');
         if (element) {
             element.classList.remove('modal_show');

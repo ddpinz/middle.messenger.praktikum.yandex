@@ -7,15 +7,18 @@ import { regExpConstants, validationMessages } from '../../../utils/constants';
 import Avatar from '../components/avatar/avatar';
 import { Link } from '../../../components/link';
 import { connect, StoreData } from '../../../utils/Store';
-import UserController from "../../../controllers/UserController";
+import UserController from '../../../controllers/UserController';
+import { Props } from '../../../utils/helpers';
+import { ProfileData } from '../../../api/UserAPI';
 
 class Edit extends Block<EditProps> {
-    public constructor(props) {
+    public constructor(props: Props) {
         super(
             {
                 events: {
                     submit: (e: Event) => this.handleSubmit(e)
                 },
+                // @ts-ignore
                 avatar: new Avatar({}),
                 email: new Input({
                     title: 'Почта',
@@ -104,7 +107,7 @@ class Edit extends Block<EditProps> {
         if (e.target) {
             const formIsValid = (e.target as HTMLFormElement).closest('form')!.checkValidity();
             if (formIsValid) {
-                UserController.update(data);
+                UserController.update(data as ProfileData);
                 console.log(data);
             }
         }

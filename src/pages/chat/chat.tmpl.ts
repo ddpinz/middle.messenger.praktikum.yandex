@@ -18,8 +18,7 @@ div.layout
                             img(src=currentChat.avatar)
                     div.chat-content__chat__head__title=currentChat.title
                 | !{actionsPopup}
-            div.chat-content__chat
-                div.chat-content__chat__wrapper
-                    | !{messages}
+            div.chat-content__chat(id="chat-messages")
+                | !{messages}
             | !{sendMessage}
 `;

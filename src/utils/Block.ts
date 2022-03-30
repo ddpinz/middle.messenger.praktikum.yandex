@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
-import pug from 'pug';
 import EventBus from './EventBus';
 import { MetaProps } from './utils.types';
+
+const pug = require('pug');
 
 export default abstract class Block<Props extends Record<string, unknown>> {
     private static EVENTS = {
@@ -87,7 +88,7 @@ export default abstract class Block<Props extends Record<string, unknown>> {
     }
 
     public componentDidUpdate(oldProps: Record<string, unknown>, newProps: Record<string, unknown>) {
-        return true;
+        return oldProps !== newProps;
     }
 
     public setProps = (nextProps: Record<string, unknown>) => {
@@ -236,9 +237,10 @@ export default abstract class Block<Props extends Record<string, unknown>> {
             }
         });
 
+        // @ts-ignore
         fragment.innerHTML = pug.render(template, { doctype: 'html', ...context });
 
-        Object.entries(this.children).forEach(([key, child]: [string, Block<Props>]) => {
+        Object.values(this.children).forEach((child: Block<Props>) => {
             if (Array.isArray(child)) {
                 child.forEach((elem: Block<Props>) => {
                     const stub = fragment.content.querySelector(`[data-id="id-${elem._id}"]`);
