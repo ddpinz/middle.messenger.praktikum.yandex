@@ -1,6 +1,6 @@
 
-Ссылка на PULL REQUEST 3 sprint:
-[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/3)
+Ссылка на PULL REQUEST 4 sprint:
+[PULL REQUEST](https://github.com/ddpinz/middle.messenger.praktikum.yandex/pull/4)
 
 ## Описание
 
@@ -12,9 +12,14 @@
 - `Pug`
 - `Eslint`
 - `Stylelint`
+- `Webpack`
 
 ## Демо
+Netlify
 [Owl Chat](https://happy-easley-7285a8.netlify.app)
+
+Heroku
+[Owl Chat](https://owl-chat.herokuapp.com)
 
 ## Дизайн
 [Figma](https://www.figma.com/file/5wsoJ4ahFth2IKLsGlUHpW/OWL-Chat).
@@ -29,10 +34,9 @@
 ## Описание работы
 
 Для просмотра доступны следующие страницы
-- `/index.html` — стартовая с ссылками на все доступные страницы,
-- `/login.html` — страница авторизации,
-- `/registration.html` — страница регистрации.
-- `/profile.html` — просмотр профиля пользователя
-- `/edit-profile.html` — редактирование профиля пользователя
-- `/change-password.html` — изменение пароля пользователя
-- `/chat.html` — страница чата
+- `/` — страница авторизации,
+- `/sign-up` — страница регистрации.
+- `/settings` — просмотр профиля пользователя
+- `/settings/edit` — редактирование профиля пользователя
+- `/settings/change-password` — изменение пароля пользователя
+- `/messages` — страница чата
