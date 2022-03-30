@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import router from './router';
-import Route from './route';
+import router from './Router';
+import Route from './Route';
 import { Login } from '../pages/login';
 import { Registration } from '../pages/registration';
 import { Chat } from '../pages/chat';

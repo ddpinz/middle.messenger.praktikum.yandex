@@ -1,7 +1,7 @@
 import EventBus from './EventBus';
 import Block from './Block';
 import {
-    isEqual, isEqualObject, PlainObject, Props, set
+    isEqualObject, Props, set
 } from './helpers';
 
 export enum StoreEvents {

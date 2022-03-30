@@ -40,7 +40,7 @@ export default class HTTPTransport {
 
     private request<Response>(url: string, options: RequestOptions = {}): Promise<Response> {
         const {
-            headers, method, data, isFile
+            method, data, isFile
         } = options;
 
         return new Promise((resolve, reject) => {

@@ -1,10 +1,10 @@
 import Block from '../../../../utils/Block';
 import chatTmpl from './chat-messages.tmpl';
-import store, { connect } from '../../../../utils/Store';
+import { connect } from '../../../../utils/Store';
 import { Props } from '../../../../utils/helpers';
 
 class ChatMessages extends Block<Props> {
-    public constructor(props) {
+    public constructor(props: Props) {
         super({
             ...props,
             messagesItems: ['']

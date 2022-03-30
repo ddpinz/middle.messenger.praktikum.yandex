@@ -10,7 +10,7 @@ type AddUserProps = {
     addButton?: Button;
     cancelButton?: Button;
     events?: {
-        submit: (e: Event) => void;
+        submit?: (e: Event) => void;
     }
 }
 
@@ -36,7 +36,7 @@ class AddUser extends Block<AddUserProps> {
                 text: 'Отмена',
                 className: 'btn-secondary btn-small',
                 events: {
-                    click: (e: Event) => this.hide(e)
+                    click: () => this.hide()
                 }
             })
         });
@@ -56,8 +56,7 @@ class AddUser extends Block<AddUserProps> {
         }
     }
 
-    public hide(e: Event) {
-        e.stopPropagation();
+    public hide() {
         const element: Element | null = document.getElementById('add_user_modal');
         if (element) {
             element.classList.remove('modal_show');

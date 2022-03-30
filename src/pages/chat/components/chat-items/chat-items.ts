@@ -1,9 +1,8 @@
 import Block from '../../../../utils/Block';
 import chatTmpl from './chat-items.tmpl';
-import ChatItem from '../chat-item';
 import ChatController from '../../../../controllers/ChatController';
-import store, { connect } from '../../../../utils/Store';
-import { isEqualObject, Props } from '../../../../utils/helpers';
+import { connect } from '../../../../utils/Store';
+import { Props } from '../../../../utils/helpers';
 
 type ChatProps = {
     chatItems?: Array<any>,
@@ -14,7 +13,7 @@ type ChatProps = {
 }
 
 class ChatItems extends Block<ChatProps> {
-    public constructor(props) {
+    public constructor(props: Props) {
         super({
             ...props,
             chatItems: [''],
@@ -31,7 +30,8 @@ class ChatItems extends Block<ChatProps> {
                             button.classList.add('chat__active');
 
                             ChatController.setCurrentChat(
-                                JSON.parse(button.dataset.chatData)
+                                // @ts-ignore
+                                JSON.parse(button?.dataset.chatData)
                             );
                         } else {
                             ChatController.setCurrentChat(null);

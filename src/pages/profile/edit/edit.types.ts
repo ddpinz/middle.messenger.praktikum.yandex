@@ -1,6 +1,6 @@
 import { Input } from '../../../components/profile-input';
 import { Button } from '../../../components/button';
-import { Avatar } from '../components/avatar';
+import { Avatar } from '../components/avatar/avatar';
 import { Link } from '../../../components/link';
 
 type EditProps = {

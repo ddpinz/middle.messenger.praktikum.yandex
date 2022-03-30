@@ -1,15 +1,16 @@
 import Block from '../../../utils/Block';
 import router from '../../../utils/Router';
-import store, { StoreData, connect } from '../../../utils/Store';
+import { StoreData, connect } from '../../../utils/Store';
 import profileTemplate from './profile.tmpl';
 import ProfileLine from '../components/profile-line/profile-line';
 import ProfileLink from '../components/profile-link/profile-link';
 import { ProfileProps } from './profile.types';
 import AuthController from '../../../controllers/AuthController';
 import { Link } from '../../../components/link';
+import { Props } from '../../../utils/helpers';
 
 class Profile extends Block<ProfileProps> {
-    public constructor(props) {
+    public constructor(props: Props) {
         super(
             {
                 ...props,
